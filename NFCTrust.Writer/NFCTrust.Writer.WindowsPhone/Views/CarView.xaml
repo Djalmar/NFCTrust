@@ -1,0 +1,76 @@
+﻿<common:BindablePage
+    x:Class="NFCTrust.Writer.Views.CarView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NFCTrust.Writer.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="using:NFCTrust.Writer.Views"
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator},Path=CarViewModel}"
+    xmlns:vm="using:NFCTrust.Writer.ViewModel"
+    xmlns:c4fToolkit="using:Coding4Fun.Toolkit.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <Hub>
+        <Hub.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="19,0,0,0">
+                    <TextBlock Text="VEHÍCULO" Style="{ThemeResource HeaderTextBlockStyle}"  Margin="0,12,0,0" Foreground="{ThemeResource AppBarToggleButtonCheckedDisabledBackgroundThemeBrush}" FontFamily="Segoe WP Light"/>
+                </StackPanel>
+            </Grid>
+        </Hub.Header>
+        <HubSection Header="Fotografia" >
+            <DataTemplate>
+                <ScrollViewer>
+                    <Grid >
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Margin="19,0" Command="{Binding Path=InitCameraCommand}">Iniciar Camara</Button>
+                                <Button Command="{Binding Path=TakePictureCommand}" >
+                                    <TextBlock >
+                                        <Run Foreground="{StaticResource PhoneAccentBrush}" FontFamily="Segoe UI Symbol" Text="&#xE114;" FontSize="20" ></Run>
+                                        <Run Text="   Capturar"/>
+                                    </TextBlock>
+                                </Button>
+                            </StackPanel>
+                            <ContentControl HorizontalAlignment="Left" Content="{Binding Path=CaptureElement}"/>
+                            <Image Source="{Binding PreviewImage}" Width="350" Height="500" />
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </DataTemplate>
+        </HubSection>
+        <HubSection>
+            <DataTemplate>
+                <Grid>
+                    <Grid Grid.Row="1">
+                        <StackPanel >
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}"></Style>
+                            </StackPanel.Resources>
+                            <TextBlock Text="Matricula"></TextBlock>
+                            <TextBox Text="{Binding CarModel.Registration,Mode=TwoWay}"></TextBox>
+                            <TextBlock Text="Color"></TextBlock>
+                            <Rectangle Width="40" Margin="0,0,0,10"  Height="40" Fill="{Binding EllipseColor}" Name="coloSample"></Rectangle>
+                            <c4fToolkit:ColorPicker Color="{Binding SelectedColor,Mode=TwoWay}" MinHeight="300">
+                            </c4fToolkit:ColorPicker>
+                            <Button Command="{Binding Path=SaveCommand}">
+                                <TextBlock>
+                                    <Run Foreground="{StaticResource PhoneAccentBrush}" FontFamily="Segoe UI Symbol" Text="&#xE105;" FontSize="20" ></Run>
+                                    <Run Text="    Guardar"/>
+                                </TextBlock>
+                            </Button>
+                            <TextBlock Foreground="{StaticResource PhoneAccentBrush}" Text="{Binding Path=Status}" Style="{StaticResource MessageDialogContentStyle}"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+        </HubSection>
+    </Hub>
+</common:BindablePage>

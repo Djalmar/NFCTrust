@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="NFCTrust.Writer.Views.NFCWriterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NFCTrust.Writer.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="NFC" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+        </StackPanel>
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <StackPanel>
+                <TextBlock TextAlignment="Justify" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap">
+                    <Run>Acerque una</Run>
+                        <Run FontWeight="Bold" Foreground="{StaticResource PhoneAccentBrush}" Text=" etiqueta NFC "></Run>
+                        <Run>junto al dispositivo, para poder escribir los datos del vehiculo registrado</Run></TextBlock>
+                <Image MaxWidth="300" Margin="20" Source="ms-appx:///Assets/NFCWrite.jpg"></Image>
+                <TextBlock 
+                    Name="NFCStatus"
+                    Foreground="{StaticResource PhoneAccentBrush}" 
+                    Style="{StaticResource MessageDialogContentStyle}"></TextBlock>
+                <Button Name="btnWrite" HorizontalAlignment="Right">
+                    <TextBlock>
+                        <Run Foreground="{StaticResource PhoneAccentBrush}" FontFamily="Segoe UI Symbol" Text="&#xE105;" FontSize="20" ></Run>
+                        <Run Text="   Escribir"/>
+                    </TextBlock>
+                </Button>
+                <Button Name="btnHome" IsEnabled="False" HorizontalAlignment="Right">
+                    <TextBlock>
+                        <Run Foreground="{StaticResource PhoneAccentBrush}" FontFamily="Segoe UI Symbol" Text="&#xE10F;" FontSize="20" ></Run>
+                        <Run Text="      Inicio"/>
+                    </TextBlock>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,69 @@
+﻿<common:BindablePage
+    x:Class="NFCTrust.Views.CarDriverPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NFCTrust.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="using:NFCTrust.Views"
+    DataContext="{Binding Source={StaticResource Locator}, Path=CarDriver}"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Hub>
+        <Hub.Header>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="19,0,0,0">
+                    <TextBlock Text="INFORMACIÓN" Style="{ThemeResource HeaderTextBlockStyle}"  Margin="0,12,0,0" Foreground="{ThemeResource AppBarToggleButtonCheckedDisabledBackgroundThemeBrush}" FontFamily="Segoe WP Light"/>
+                </StackPanel>
+            </Grid>
+        </Hub.Header>
+        <HubSection Header="Vehículo" >
+            <DataTemplate>
+                <ScrollViewer>
+                    <Grid >
+                        <StackPanel>
+                            <TextBlock >
+                                <Run Text="Matricula"></Run>
+                                <Run Text="{Binding CarModel.Registration}"></Run>
+                            </TextBlock>
+                            <TextBlock >
+                                <Run Text="Color"></Run>
+                            </TextBlock>
+                            <Image Height="400" Width="350"></Image>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </DataTemplate>
+        </HubSection>
+        <HubSection Header="Conductor">
+            <DataTemplate>
+                <Grid>
+                    <Grid Grid.Row="1">
+                        <StackPanel >
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}"/>
+                            </StackPanel.Resources>
+                            <TextBlock >
+                                <Run Text="Nombre  "></Run>
+                                <LineBreak></LineBreak>
+                                <Run Text="{Binding DriverModel.FirstName}"></Run>
+                                <Run> </Run>
+                                <Run Text="{Binding DriverModel.LastName}"></Run>
+                            </TextBlock>
+                            <TextBlock >
+                                <Run Text="Licencia de conducir  "></Run>
+                                <LineBreak></LineBreak>
+                                <Run Text="{Binding DriverModel.DriverRegistration}"></Run>
+                            </TextBlock>
+                            <Image Height="400" Width="350"></Image>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+        </HubSection>
+    </Hub>
+</common:BindablePage>
